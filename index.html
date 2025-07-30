@@ -3,65 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevToolkit - Android Development Resources</title>
+    <title>DEL PRIVATE SCHOOL - Student Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #00ff88;
+            --primary-dark: #00c96d;
+            --secondary: #00d4ff;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --danger: #ff4444;
+            --warning: #ffbb33;
+            --success: #00C851;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
             min-height: 100vh;
             overflow-x: hidden;
-            color: white;
+            color: var(--light);
+            line-height: 1.6;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Code background animation */
-        .code-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            opacity: 0.1;
-        }
-
-        .code-line {
-            position: absolute;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            color: #00ff88;
-            animation: float-code 15s linear infinite;
-            white-space: nowrap;
-        }
-
-        @keyframes float-code {
-            0% { transform: translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateX(120vw); opacity: 0; }
+            padding: 0 1.5rem;
         }
 
         /* Header styles */
         header {
-            padding: 20px 0;
-            backdrop-filter: blur(20px);
-            background: rgba(15, 23, 42, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         nav {
@@ -71,81 +71,129 @@
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: #00ff88;
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.75rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
         }
 
-        .logo::before {
-            content: "⚡";
-            font-size: 32px;
-            animation: pulse-electric 2s infinite;
+        .logo-icon {
+            font-size: 2rem;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes pulse-electric {
-            0%, 100% { transform: scale(1); filter: brightness(1); }
-            50% { transform: scale(1.1); filter: brightness(1.5); }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 2rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--light);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            color: #00ff88;
-            transform: translateY(-2px);
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Hero section */
         .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
             text-align: center;
-            padding: 120px 0 80px;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #00ff88, #00d4ff, #ff6b6b);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: slideInUp 1s ease-out;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #00ff88;
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
+            margin-bottom: 1.5rem;
+            color: var(--primary);
             font-weight: 600;
-            animation: slideInUp 1s ease-out 0.2s both;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            opacity: 0.8;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: slideInUp 1s ease-out 0.4s both;
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
-        @keyframes slideInUp {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -160,15 +208,15 @@
         .stats-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
+            gap: 1.5rem;
+            margin: 4rem 0;
         }
 
         .stat-card {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 15px;
-            padding: 30px;
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
             text-align: center;
             border: 1px solid rgba(0, 255, 136, 0.2);
             transition: all 0.3s ease;
@@ -176,15 +224,15 @@
 
         .stat-card:hover {
             transform: translateY(-5px);
-            border-color: #00ff88;
+            border-color: var(--primary);
             box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #00ff88;
-            margin-bottom: 10px;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
@@ -192,44 +240,47 @@
             opacity: 0.8;
         }
 
-        /* Tools section */
-        .tools-section {
-            padding: 80px 0;
+        /* Roles section */
+        .roles-section {
+            padding: 5rem 0;
         }
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 800;
-            margin-bottom: 20px;
-            color: white;
+            margin-bottom: 1rem;
+            color: var(--light);
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
             opacity: 0.8;
-            margin-bottom: 60px;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .tools-grid {
+        .roles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
 
-        .tool-card {
+        .role-card {
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 35px;
+            backdrop-filter: blur(10px);
+            border-radius: 1.25rem;
+            padding: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .tool-card::before {
+        .role-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -240,272 +291,210 @@
             transition: left 0.6s ease;
         }
 
-        .tool-card:hover::before {
+        .role-card:hover::before {
             left: 100%;
         }
 
-        .tool-card:hover {
+        .role-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             border-color: rgba(0, 255, 136, 0.3);
         }
 
-        .tool-icon {
+        .role-icon {
             width: 80px;
             height: 80px;
-            border-radius: 20px;
+            border-radius: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
             position: relative;
         }
 
-        .firebase-icon {
-            background: linear-gradient(135deg, #FFA000, #FF6F00);
-        }
-
-        .java-icon {
-            background: linear-gradient(135deg, #ED8B00, #FF6B35);
-        }
-
-        .xml-icon {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
-        }
-
-        .android-icon {
-            background: linear-gradient(135deg, #3DDC84, #00C853);
-        }
-
-        .auth-icon {
+        .student-icon {
             background: linear-gradient(135deg, #2196F3, #1976D2);
         }
 
-        .calendar-icon {
-            background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+        .teacher-icon {
+            background: linear-gradient(135deg, #FFA000, #FF6F00);
         }
 
-        .sheets-icon {
-            background: linear-gradient(135deg, #0F9D58, #0B8043);
+        .admin-icon {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
         }
 
-        .tool-info h3 {
-            color: white;
-            font-size: 1.6rem;
-            margin-bottom: 12px;
+        .role-info h3 {
+            color: var(--light);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             font-weight: 700;
         }
 
-        .tool-info p {
+        .role-info p {
             color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
-            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
-        .tool-features {
+        .role-features {
             list-style: none;
-            margin-bottom: 25px;
+            margin-bottom: 2rem;
         }
 
-        .tool-features li {
+        .role-features li {
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 8px;
-            padding-left: 20px;
+            margin-bottom: 0.75rem;
+            padding-left: 1.75rem;
             position: relative;
         }
 
-        .tool-features li::before {
-            content: "✓";
+        .role-features li::before {
+            content: '✓';
             position: absolute;
             left: 0;
-            color: #00ff88;
+            color: var(--primary);
             font-weight: bold;
         }
 
-        .download-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #00ff88, #00d4ff);
-            color: #0f172a;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            border: none;
         }
 
-        .download-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-block {
+            display: block;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #00d4ff, #00ff88);
-            transition: left 0.3s ease;
-            z-index: -1;
         }
 
-        .download-btn:hover::before {
-            left: 0;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
-        }
-
-        /* Developers section */
-        .developers-section {
+        /* Features section */
+        .features-section {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 60px;
-            margin: 80px 0;
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 4rem;
+            margin: 4rem 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .dev-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .dev-card {
+        .feature-card {
             background: rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
+            border-radius: 1rem;
+            padding: 1.5rem;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .dev-card:hover {
+        .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
+            border-color: var(--primary);
         }
 
-        .dev-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00ff88, #00d4ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            margin: 0 auto 20px;
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
 
-        .dev-name {
-            font-size: 1.3rem;
+        .feature-title {
+            font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 0.75rem;
         }
 
-        .dev-role {
-            color: #00ff88;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .dev-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            background: rgba(0, 255, 136, 0.2);
-            color: #00ff88;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
+        .feature-desc {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         /* CTA section */
         .cta-section {
             text-align: center;
-            padding: 80px 0;
+            padding: 5rem 0;
             background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
-            border-radius: 30px;
-            margin: 60px 0;
+            border-radius: 1.5rem;
+            margin: 4rem 0;
         }
 
         .cta-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
 
         .cta-subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
             opacity: 0.8;
-            margin-bottom: 40px;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 20px;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .cta-btn {
-            padding: 18px 40px;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-primary {
-            background: linear-gradient(135deg, #00ff88, #00d4ff);
-            color: #0f172a;
-        }
-
-        .cta-secondary {
+        .btn-secondary {
             background: transparent;
-            color: white;
-            border: 2px solid #00ff88;
+            color: var(--light);
+            border: 2px solid var(--primary);
         }
 
-        .cta-btn:hover {
+        .btn-secondary:hover {
+            background: rgba(0, 255, 136, 0.1);
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
         }
 
         /* Footer */
         footer {
             background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(15px);
-            padding: 50px 0;
-            text-align: center;
+            backdrop-filter: blur(10px);
+            padding: 4rem 0;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .footer-section h4 {
-            color: #00ff88;
+            color: var(--primary);
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
         }
 
         .footer-links {
@@ -513,17 +502,119 @@
         }
 
         .footer-links li {
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
         }
 
         .footer-links a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0.25rem 0;
         }
 
         .footer-links a:hover {
-            color: #00ff88;
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--dark-light);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: all 0.5s ease;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .features-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.25rem;
+            }
+
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
         }
 
         /* Notification */
@@ -531,10 +622,10 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #00ff88, #00d4ff);
-            color: #0f172a;
-            padding: 15px 25px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transform: translateX(400px);
             transition: transform 0.3s ease;
@@ -545,371 +636,329 @@
         .notification.show {
             transform: translateX(0);
         }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .developers-section {
-                padding: 40px 20px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="code-background">
-        <div class="code-line">public class MainActivity extends AppCompatActivity {</div>
-        <div class="code-line">FirebaseAuth auth = FirebaseAuth.getInstance();</div>
-        <div class="code-line">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"&gt;</div>
-        <div class="code-line">Calendar calendar = Calendar.getInstance();</div>
-        <div class="code-line">implementation 'com.google.firebase:firebase-firestore:24.4.1'</div>
-    </div>
-
-    <header>
+    <header id="header">
         <nav class="container">
-            <a href="#" class="logo">DevToolkit</a>
+            <a href="#" class="logo">
+                <i class="fas fa-school logo-icon"></i>
+                <span>DEL PRIVATE SCHOOL</span>
+            </a>
             <ul class="nav-links">
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="#developers">Developers</a></li>
-                <li><a href="#downloads">Downloads</a></li>
-                <li><a href="#support">Support</a></li>
+                <li><a href="#roles">User Roles</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#cta">Get Started</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
     <main>
-        <section class="hero container">
-            <h1>Android Development Toolkit</h1>
-            <div class="subtitle">Premium Components & Resources</div>
-            <p>Download professional-grade Android development tools including Firebase integration, authentication systems, calendar components, and more to accelerate your app development.</p>
-            
-            <div class="stats-section">
-                <div class="stat-card">
-                    <div class="stat-number">50K+</div>
-                    <div class="stat-label">Downloads</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">Expert Developers</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">99.9%</div>
-                    <div class="stat-label">Uptime</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Support</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="tools" class="tools-section container">
-            <h2 class="section-title">Development Tools & Components</h2>
-            <p class="section-subtitle">Download professional Android development resources</p>
-            
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="tool-icon firebase-icon">🔥</div>
-                    <div class="tool-info">
-                        <h3>Firebase Integration</h3>
-                        <p>Complete Firebase backend services with real-time database, cloud storage, and analytics.</p>
-                        <ul class="tool-features">
-                            <li>Firebase Database</li>
-                            <li>Cloud Firestore</li>
-                            <li>Authentication</li>
-                            <li>Cloud Functions</li>
-                        </ul>
-                        <button class="download-btn" onclick="downloadTool('firebase-integration-v3.2.apk')">
-                            🔥 Download (v3.2)
-                        </button>
+        <section class="hero">
+            <div class="hero-content container">
+                <h1>Student Information Management System</h1>
+                <div class="subtitle">Secure Grade Management Platform</div>
+                <p>
+                    DEL Private School's comprehensive student information system provides role-based access to academic records. 
+                    <strong>Students</strong> can securely view their grades, <strong>Teachers</strong> can manage and update academic records, 
+                    and <strong>Administrators</strong> have complete control over student enrollment and data management.
+                </p>
+                <div class="stats-section">
+                    <div class="stat-card floating" style="animation-delay: 0s;">
+                        <div class="stat-number">1,200+</div>
+                        <div class="stat-label">Students</div>
                     </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="tool-icon java-icon">☕</div>
-                    <div class="tool-info">
-                        <h3>Java Utilities</h3>
-                        <p>Essential Java libraries and utilities for Android development.</p>
-                        <ul class="tool-features">
-                            <li>Java 11+ Support</li>
-                            <li>Android Libraries</li>
-                            <li>Code Templates</li>
-                            <li>Performance Tools</li>
-                        </ul>
-                        <button class="download-btn" onclick="downloadTool('java-utilities-v2.8.apk')">
-                            ☕ Download (v2.8)
-                        </button>
+                    <div class="stat-card floating" style="animation-delay: 0.2s;">
+                        <div class="stat-number">85</div>
+                        <div class="stat-label">Teachers</div>
                     </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="tool-icon xml-icon">📄</div>
-                    <div class="tool-info">
-                        <h3>XML Layout Kit</h3>
-                        <p>Advanced XML layout components and templates.</p>
-                        <ul class="tool-features">
-                            <li>UI Components</li>
-                            <li>Layout Templates</li>
-                            <li>Material Design</li>
-                            <li>Custom Views</li>
-                        </ul>
-                        <button class="download-btn" onclick="downloadTool('xml-layout-kit-v1.9.apk')">
-                            📄 Download (v1.9)
-                        </button>
+                    <div class="stat-card floating" style="animation-delay: 0.4s;">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
                     </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="tool-icon android-icon">🤖</div>
-                    <div class="tool-info">
-                        <h3>Android Studio Plugins</h3>
-                        <p>Essential plugins for Android Studio development.</p>
-                        <ul class="tool-features">
-                            <li>Code Generation</li>
-                            <li>UI Inspector</li>
-                            <li>Performance Monitor</li>
-                            <li>Debugging Tools</li>
-                        </ul>
-                        <button class="download-btn" onclick="downloadTool('studio-plugins-v4.1.apk')">
-                            🤖 Download (v4.1)
-                        </button>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="tool-icon auth-icon">🔐</div>
-                    <div class="tool-info">
-                        <h3>Auth Components</h3>
-                        <p>Secure authentication components for your apps.</p>
-                        <ul class="tool-features">
-                            <li>Biometric Auth</li>
-                            <li>OAuth Integration</li>
-                            <li>User Management</li>
-                            <li>Security Tools</li>
-                        </ul>
-                        <button class="download-btn" onclick="downloadTool('auth-components-v2.5.apk')">
-                            🔐 Download (v2.5)
-                        </button>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="tool-icon calendar-icon">📅</div>
-                    <div class="tool-info">
-                        <h3>Calendar System</h3>
-                        <p>Advanced calendar and scheduling components.</p>
-                        <ul class="tool-features">
-                            <li>Custom Calendar Views</li>
-                            <li>Event Management</li>
-                            <li>Reminder System</li>
-                            <li>Sync Integration</li>
-                        </ul>
-                        <button class="download-btn" onclick="downloadTool('calendar-system-v3.0.apk')">
-                            📅 Download (v3.0)
-                        </button>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <div class="tool-icon sheets-icon">📊</div>
-                    <div class="tool-info">
-                        <h3>Google Sheets API</h3>
-                        <p>Tools for integrating with Google Sheets.</p>
-                        <ul class="tool-features">
-                            <li>Data Import/Export</li>
-                            <li>Real-time Sync</li>
-                            <li>Spreadsheet Tools</li>
-                            <li>API Integration</li>
-                        </ul>
-                        <button class="download-btn" onclick="downloadTool('sheets-api-v1.7.apk')">
-                            📊 Download (v1.7)
-                        </button>
+                    <div class="stat-card floating" style="animation-delay: 0.6s;">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="developers" class="developers-section container">
-            <h2 class="section-title">Our Development Team</h2>
-            <p class="section-subtitle">The experts behind these professional tools</p>
-            
-            <div class="dev-grid">
-                <div class="dev-card">
-                    <div class="dev-avatar">👨‍💻</div>
-                    <div class="dev-name">Alex Chen</div>
-                    <div class="dev-role">Lead Android Developer</div>
-                    <div class="dev-skills">
-                        <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Kotlin</span>
+        <section id="roles" class="roles-section">
+            <div class="container">
+                <h2 class="section-title">User Roles & Permissions</h2>
+                <p class="section-subtitle">Different access levels for students, teachers, and administrators</p>
+                
+                <div class="roles-grid">
+                    <div class="role-card">
+                        <div class="role-icon student-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="role-info">
+                            <h3>Student Access</h3>
+                            <p>Students can securely access their academic information and performance metrics.</p>
+                            <ul class="role-features">
+                                <li>View personal grades and transcripts</li>
+                                <li>Monitor academic progress</li>
+                                <li>Access course materials</li>
+                                <li>View attendance records</li>
+                                <li>No editing permissions</li>
+                            </ul>
+                            <a href="#cta" class="btn btn-primary btn-block">Student Login</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="dev-card">
-                    <div class="dev-avatar">👩‍💻</div>
-                    <div class="dev-name">Sarah Johnson</div>
-                    <div class="dev-role">UI/UX Specialist</div>
-                    <div class="dev-skills">
-                        <span class="skill-tag">XML</span>
-                        <span class="skill-tag">Material Design</span>
-                        <span class="skill-tag">Figma</span>
+                    <div class="role-card">
+                        <div class="role-icon teacher-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="role-info">
+                            <h3>Teacher Access</h3>
+                            <p>Teachers can manage and update student academic records with controlled permissions.</p>
+                            <ul class="role-features">
+                                <li>Upload and edit student grades</li>
+                                <li>View class performance analytics</li>
+                                <li>Submit attendance records</li>
+                                <li>Manage course content</li>
+                                <li>Cannot delete grade records</li>
+                            </ul>
+                            <a href="#cta" class="btn btn-primary btn-block">Teacher Login</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="dev-card">
-                    <div class="dev-avatar">👨‍💻</div>
-                    <div class="dev-name">Michael Rodriguez</div>
-                    <div class="dev-role">Backend Engineer</div>
-                    <div class="dev-skills">
-                        <span class="skill-tag">Firebase</span>
-                        <span class="skill-tag">Authentication</span>
-                        <span class="skill-tag">APIs</span>
-                    </div>
-                </div>
-
-                <div class="dev-card">
-                    <div class="dev-avatar">👩‍💻</div>
-                    <div class="dev-name">Emily Davis</div>
-                    <div class="dev-role">Mobile Architect</div>
-                    <div class="dev-skills">
-                        <span class="skill-tag">Android Studio</span>
-                        <span class="skill-tag">Architecture</span>
-                        <span class="skill-tag">Testing</span>
+                    <div class="role-card">
+                        <div class="role-icon admin-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="role-info">
+                            <h3>Admin Access</h3>
+                            <p>Administrators have full control over the student information system.</p>
+                            <ul class="role-features">
+                                <li>Create, read, update, delete student records</li>
+                                <li>Enroll new students</li>
+                                <li>Manage all academic data</li>
+                                <li>Generate comprehensive reports</li>
+                                <li>Full system configuration</li>
+                            </ul>
+                            <a href="#cta" class="btn btn-primary btn-block">Admin Login</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section container">
-            <h2 class="cta-title">Ready to Enhance Your Development?</h2>
-            <p class="cta-subtitle">Download our professional tools today</p>
-            <div class="cta-buttons">
-                <a href="#tools" class="cta-btn cta-primary">Browse Tools</a>
-                <a href="#developers" class="cta-btn cta-secondary">Meet the Team</a>
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2 class="section-title">System Features</h2>
+                <p class="section-subtitle">Comprehensive tools for academic management</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Grade Management</h3>
+                        <p class="feature-desc">
+                            Robust gradebook system with support for multiple grading scales, weighted assignments, and customizable categories.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3 class="feature-title">Attendance Tracking</h3>
+                        <p class="feature-desc">
+                            Comprehensive attendance system with automated notifications for absences and detailed reporting.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="feature-title">Role-Based Security</h3>
+                        <p class="feature-desc">
+                            Granular permissions system ensuring data security and appropriate access levels for all users.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Mobile Access</h3>
+                        <p class="feature-desc">
+                            Fully responsive design with mobile apps available for iOS and Android platforms.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="feature-title">Analytics Dashboard</h3>
+                        <p class="feature-desc">
+                            Visual analytics and reporting tools to track student performance and identify trends.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Data Integration</h3>
+                        <p class="feature-desc">
+                            Seamless integration with other school systems and third-party educational tools.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="cta-section">
+            <div class="container">
+                <h2 class="cta-title">Ready to Access the System?</h2>
+                <p class="cta-subtitle">Choose your login method based on your role</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Student Login</a>
+                    <a href="#" class="btn btn-secondary">Teacher Login</a>
+                    <a href="#" class="btn btn-primary">Admin Login</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer id="support">
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Development Tools</h4>
+                    <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#tools">Firebase Integration</a></li>
-                        <li><a href="#tools">Java Utilities</a></li>
-                        <li><a href="#tools">XML Layout Kit</a></li>
-                        <li><a href="#tools">Android Studio</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Components</h4>
-                    <ul class="footer-links">
-                        <li><a href="#tools">Authentication</a></li>
-                        <li><a href="#tools">Calendar System</a></li>
-                        <li><a href="#tools">Google Sheets</a></li>
-                        <li><a href="#tools">UI Components</a></li>
+                        <li><a href="#roles">User Roles</a></li>
+                        <li><a href="#features">System Features</a></li>
+                        <li><a href="#cta">Login Portal</a></li>
+                        <li><a href="#">School Website</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Support</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">Community</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">User Guides</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">System Requirements</a></li>
                     </ul>
                 </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a></li>
+                        <li><a href="mailto:info@delschool.edu"><i class="fas fa-envelope"></i> info@delschool.edu</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 School Avenue</li>
+                        <li>Education City, EC 12345</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
             </div>
-            <p>&copy; 2025 DevToolkit. Professional Android Development Resources.</p>
+            <div class="copyright">
+                &copy; 2023 DEL PRIVATE SCHOOL. All rights reserved.
+            </div>
         </div>
     </footer>
 
     <div id="notification" class="notification"></div>
 
     <script>
-        // Download tool function
-        function downloadTool(filename) {
-            // GitHub repository path where APKs are stored
-            const githubRepoBase = 'https://github.com/Folesterio/LandingPage/raw/main/tools/';
-            const downloadUrl = githubRepoBase + filename;
-            
-            // Create a temporary link and trigger download
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Show notification
-            showNotification(`Downloading ${filename}...`);
-            
-            // Change button state temporarily
-            const button = event.target;
-            const originalText = button.innerHTML;
-            button.innerHTML = '⏳ Downloading...';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }, 3000);
-        }
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
 
-        // Notification system
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
 
         // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Add animation to download buttons
-        document.querySelectorAll('.download-btn').forEach(btn => {
-            btn.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-3px)';
-                this.style.boxShadow = '0 10px 20px rgba(0, 255, 136, 0.3)';
-            });
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.role-card, .feature-card');
             
-            btn.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
             });
+        };
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.role-card, .feature-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'all 0.5s ease';
         });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Notification system
+        function showNotification(message, duration = 3000) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, duration);
+        }
+
+        // Example notification (can be triggered by user actions)
+        // showNotification("Welcome to DEL Private School System!", 2000);
     </script>
 </body>
 </html>
