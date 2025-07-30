@@ -240,8 +240,8 @@
             opacity: 0.8;
         }
 
-        /* Roles section */
-        .roles-section {
+        /* Tools & APIs Section */
+        .tools-section {
             padding: 5rem 0;
         }
 
@@ -263,13 +263,13 @@
             margin-right: auto;
         }
 
-        .roles-grid {
+        .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
-        .role-card {
+        .tool-card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(10px);
             border-radius: 1.25rem;
@@ -280,7 +280,7 @@
             overflow: hidden;
         }
 
-        .role-card::before {
+        .tool-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -291,17 +291,17 @@
             transition: left 0.6s ease;
         }
 
-        .role-card:hover::before {
+        .tool-card:hover::before {
             left: 100%;
         }
 
-        .role-card:hover {
+        .tool-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             border-color: rgba(0, 255, 136, 0.3);
         }
 
-        .role-icon {
+        .tool-icon {
             width: 80px;
             height: 80px;
             border-radius: 1rem;
@@ -313,43 +313,47 @@
             position: relative;
         }
 
-        .student-icon {
-            background: linear-gradient(135deg, #2196F3, #1976D2);
-        }
-
-        .teacher-icon {
+        .firebase-icon {
             background: linear-gradient(135deg, #FFA000, #FF6F00);
         }
 
-        .admin-icon {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        .java-icon {
+            background: linear-gradient(135deg, #ED8B00, #FF6B35);
         }
 
-        .role-info h3 {
+        .sheets-icon {
+            background: linear-gradient(135deg, #0F9D58, #0B8043);
+        }
+
+        .auth-icon {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+
+        .tool-info h3 {
             color: var(--light);
             font-size: 1.5rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
 
-        .role-info p {
+        .tool-info p {
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 1.5rem;
         }
 
-        .role-features {
+        .tool-features {
             list-style: none;
             margin-bottom: 2rem;
         }
 
-        .role-features li {
+        .tool-features li {
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 0.75rem;
             padding-left: 1.75rem;
             position: relative;
         }
 
-        .role-features li::before {
+        .tool-features li::before {
             content: '✓';
             position: absolute;
             left: 0;
@@ -357,36 +361,8 @@
             font-weight: bold;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            text-align: center;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--dark);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
-        }
-
-        .btn-block {
-            display: block;
-            width: 100%;
-        }
-
-        /* Features section */
-        .features-section {
+        /* Developers Section */
+        .developers-section {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-radius: 1.5rem;
@@ -395,45 +371,71 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .features-grid {
+        .dev-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .feature-card {
+        .dev-card {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 1rem;
             padding: 1.5rem;
+            text-align: center;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .feature-card:hover {
+        .dev-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
             border-color: var(--primary);
         }
 
-        .feature-icon {
+        .dev-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
+            margin: 0 auto 1.5rem;
+            color: var(--dark);
         }
 
-        .feature-title {
-            font-size: 1.25rem;
+        .dev-name {
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
-        .feature-desc {
-            color: rgba(255, 255, 255, 0.7);
+        .dev-role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
-        /* CTA section */
-        .cta-section {
+        .dev-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Download Section */
+        .download-section {
             text-align: center;
             padding: 5rem 0;
             background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
@@ -441,38 +443,26 @@
             margin: 4rem 0;
         }
 
-        .cta-title {
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border-radius: 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
         }
 
-        .cta-subtitle {
-            font-size: clamp(1rem, 1.5vw, 1.25rem);
-            opacity: 0.8;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--light);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(0, 255, 136, 0.1);
+        .download-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
         }
 
         /* Footer */
@@ -571,11 +561,7 @@
                 padding: 8rem 0 4rem;
             }
 
-            .features-section {
-                padding: 3rem 1.5rem;
-            }
-
-            .cta-section {
+            .developers-section {
                 padding: 3rem 1.5rem;
             }
         }
@@ -589,32 +575,13 @@
                 font-size: 1.25rem;
             }
 
-            .roles-grid {
+            .tools-grid {
                 grid-template-columns: 1fr;
             }
 
-            .features-grid {
+            .dev-grid {
                 grid-template-columns: 1fr;
             }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
         }
 
         /* Notification */
@@ -646,9 +613,9 @@
                 <span>DEL PRIVATE SCHOOL</span>
             </a>
             <ul class="nav-links">
-                <li><a href="#roles">User Roles</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#cta">Get Started</a></li>
+                <li><a href="#tools">Tools & APIs</a></li>
+                <li><a href="#developers">Developers</a></li>
+                <li><a href="#download">Download</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn">
@@ -668,19 +635,19 @@
                     and <strong>Administrators</strong> have complete control over student enrollment and data management.
                 </p>
                 <div class="stats-section">
-                    <div class="stat-card floating" style="animation-delay: 0s;">
+                    <div class="stat-card">
                         <div class="stat-number">1,200+</div>
                         <div class="stat-label">Students</div>
                     </div>
-                    <div class="stat-card floating" style="animation-delay: 0.2s;">
+                    <div class="stat-card">
                         <div class="stat-number">85</div>
                         <div class="stat-label">Teachers</div>
                     </div>
-                    <div class="stat-card floating" style="animation-delay: 0.4s;">
+                    <div class="stat-card">
                         <div class="stat-number">99.9%</div>
                         <div class="stat-label">Uptime</div>
                     </div>
-                    <div class="stat-card floating" style="animation-delay: 0.6s;">
+                    <div class="stat-card">
                         <div class="stat-number">24/7</div>
                         <div class="stat-label">Support</div>
                     </div>
@@ -688,147 +655,149 @@
             </div>
         </section>
 
-        <section id="roles" class="roles-section">
+        <section id="tools" class="tools-section">
             <div class="container">
-                <h2 class="section-title">User Roles & Permissions</h2>
-                <p class="section-subtitle">Different access levels for students, teachers, and administrators</p>
+                <h2 class="section-title">Tools & APIs</h2>
+                <p class="section-subtitle">Powerful technologies powering our platform</p>
                 
-                <div class="roles-grid">
-                    <div class="role-card">
-                        <div class="role-icon student-icon">
-                            <i class="fas fa-user-graduate"></i>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon firebase-icon">
+                            <i class="fas fa-fire"></i>
                         </div>
-                        <div class="role-info">
-                            <h3>Student Access</h3>
-                            <p>Students can securely access their academic information and performance metrics.</p>
-                            <ul class="role-features">
-                                <li>View personal grades and transcripts</li>
-                                <li>Monitor academic progress</li>
-                                <li>Access course materials</li>
-                                <li>View attendance records</li>
-                                <li>No editing permissions</li>
+                        <div class="tool-info">
+                            <h3>Firebase Integration</h3>
+                            <p>Real-time database and authentication services for secure data management.</p>
+                            <ul class="tool-features">
+                                <li>Cloud Firestore database</li>
+                                <li>User authentication</li>
+                                <li>Real-time updates</li>
+                                <li>Secure cloud storage</li>
                             </ul>
-                            <a href="#cta" class="btn btn-primary btn-block">Student Login</a>
                         </div>
                     </div>
 
-                    <div class="role-card">
-                        <div class="role-icon teacher-icon">
-                            <i class="fas fa-chalkboard-teacher"></i>
+                    <div class="tool-card">
+                        <div class="tool-icon java-icon">
+                            <i class="fab fa-java"></i>
                         </div>
-                        <div class="role-info">
-                            <h3>Teacher Access</h3>
-                            <p>Teachers can manage and update student academic records with controlled permissions.</p>
-                            <ul class="role-features">
-                                <li>Upload and edit student grades</li>
-                                <li>View class performance analytics</li>
-                                <li>Submit attendance records</li>
-                                <li>Manage course content</li>
-                                <li>Cannot delete grade records</li>
+                        <div class="tool-info">
+                            <h3>Java Backend</h3>
+                            <p>Robust server-side processing for all academic operations.</p>
+                            <ul class="tool-features">
+                                <li>Spring Boot framework</li>
+                                <li>RESTful APIs</li>
+                                <li>High performance</li>
+                                <li>Secure data processing</li>
                             </ul>
-                            <a href="#cta" class="btn btn-primary btn-block">Teacher Login</a>
                         </div>
                     </div>
 
-                    <div class="role-card">
-                        <div class="role-icon admin-icon">
-                            <i class="fas fa-user-shield"></i>
+                    <div class="tool-card">
+                        <div class="tool-icon sheets-icon">
+                            <i class="fas fa-table"></i>
                         </div>
-                        <div class="role-info">
-                            <h3>Admin Access</h3>
-                            <p>Administrators have full control over the student information system.</p>
-                            <ul class="role-features">
-                                <li>Create, read, update, delete student records</li>
-                                <li>Enroll new students</li>
-                                <li>Manage all academic data</li>
-                                <li>Generate comprehensive reports</li>
-                                <li>Full system configuration</li>
+                        <div class="tool-info">
+                            <h3>Google Sheets API</h3>
+                            <p>Seamless integration with Google Sheets for data export.</p>
+                            <ul class="tool-features">
+                                <li>Export grade reports</li>
+                                <li>Automatic data sync</li>
+                                <li>Custom templates</li>
+                                <li>Real-time collaboration</li>
                             </ul>
-                            <a href="#cta" class="btn btn-primary btn-block">Admin Login</a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="features" class="features-section">
-            <div class="container">
-                <h2 class="section-title">System Features</h2>
-                <p class="section-subtitle">Comprehensive tools for academic management</p>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 class="feature-title">Grade Management</h3>
-                        <p class="feature-desc">
-                            Robust gradebook system with support for multiple grading scales, weighted assignments, and customizable categories.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <h3 class="feature-title">Attendance Tracking</h3>
-                        <p class="feature-desc">
-                            Comprehensive attendance system with automated notifications for absences and detailed reporting.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
+                    <div class="tool-card">
+                        <div class="tool-icon auth-icon">
                             <i class="fas fa-lock"></i>
                         </div>
-                        <h3 class="feature-title">Role-Based Security</h3>
-                        <p class="feature-desc">
-                            Granular permissions system ensuring data security and appropriate access levels for all users.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-mobile-alt"></i>
+                        <div class="tool-info">
+                            <h3>Authentication API</h3>
+                            <p>Secure role-based access control for all users.</p>
+                            <ul class="tool-features">
+                                <li>JWT token based</li>
+                                <li>Multi-factor auth</li>
+                                <li>Role permissions</li>
+                                <li>Activity logging</li>
+                            </ul>
                         </div>
-                        <h3 class="feature-title">Mobile Access</h3>
-                        <p class="feature-desc">
-                            Fully responsive design with mobile apps available for iOS and Android platforms.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-pie"></i>
-                        </div>
-                        <h3 class="feature-title">Analytics Dashboard</h3>
-                        <p class="feature-desc">
-                            Visual analytics and reporting tools to track student performance and identify trends.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-exchange-alt"></i>
-                        </div>
-                        <h3 class="feature-title">Data Integration</h3>
-                        <p class="feature-desc">
-                            Seamless integration with other school systems and third-party educational tools.
-                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="cta" class="cta-section">
+        <section id="developers" class="developers-section">
             <div class="container">
-                <h2 class="cta-title">Ready to Access the System?</h2>
-                <p class="cta-subtitle">Choose your login method based on your role</p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">Student Login</a>
-                    <a href="#" class="btn btn-secondary">Teacher Login</a>
-                    <a href="#" class="btn btn-primary">Admin Login</a>
+                <h2 class="section-title">Our Development Team</h2>
+                <p class="section-subtitle">The talented professionals behind our platform</p>
+                
+                <div class="dev-grid">
+                    <div class="dev-card">
+                        <div class="dev-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="dev-name">Alex Johnson</div>
+                        <div class="dev-role">Lead Developer</div>
+                        <div class="dev-skills">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Firebase</span>
+                            <span class="skill-tag">Android</span>
+                        </div>
+                    </div>
+
+                    <div class="dev-card">
+                        <div class="dev-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="dev-name">Sarah Williams</div>
+                        <div class="dev-role">UI/UX Designer</div>
+                        <div class="dev-skills">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="dev-card">
+                        <div class="dev-avatar">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <div class="dev-name">Michael Chen</div>
+                        <div class="dev-role">Backend Engineer</div>
+                        <div class="dev-skills">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">API</span>
+                            <span class="skill-tag">Database</span>
+                        </div>
+                    </div>
+
+                    <div class="dev-card">
+                        <div class="dev-avatar">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="dev-name">Emily Rodriguez</div>
+                        <div class="dev-role">Security Specialist</div>
+                        <div class="dev-skills">
+                            <span class="skill-tag">Security</span>
+                            <span class="skill-tag">Encryption</span>
+                            <span class="skill-tag">Auth</span>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="download" class="download-section">
+            <div class="container">
+                <h2 class="section-title">Download Our App</h2>
+                <p class="section-subtitle">Get the DEL Private School app for your Android device</p>
+                
+                <button id="apk-download" class="download-btn">
+                    <i class="fas fa-download"></i>
+                    Download APK (v1.0.0)
+                </button>
             </div>
         </section>
     </main>
@@ -839,10 +808,10 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#roles">User Roles</a></li>
-                        <li><a href="#features">System Features</a></li>
-                        <li><a href="#cta">Login Portal</a></li>
-                        <li><a href="#">School Website</a></li>
+                        <li><a href="#tools">Tools & APIs</a></li>
+                        <li><a href="#developers">Developers</a></li>
+                        <li><a href="#download">Download</a></li>
+                        <li><a href="#">Documentation</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -921,9 +890,37 @@
             });
         });
 
+        // APK Download functionality
+        document.getElementById('apk-download').addEventListener('click', function() {
+            // Replace with your actual APK file path
+            const apkUrl = 'Del_Private_School.apk';
+            
+            // Create a temporary link and trigger download
+            const link = document.createElement('a');
+            link.href = apkUrl;
+            link.download = 'Del_Private_School.apk';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show download notification
+            showNotification('Downloading DEL Private School APK...', 3000);
+        });
+
+        // Notification system
+        function showNotification(message, duration = 3000) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, duration);
+        }
+
         // Animation on scroll
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.role-card, .feature-card');
+            const elements = document.querySelectorAll('.tool-card, .dev-card');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
@@ -937,7 +934,7 @@
         };
 
         // Set initial state for animated elements
-        document.querySelectorAll('.role-card, .feature-card').forEach(element => {
+        document.querySelectorAll('.tool-card, .dev-card').forEach(element => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(20px)';
             element.style.transition = 'all 0.5s ease';
@@ -945,20 +942,6 @@
 
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
-
-        // Notification system
-        function showNotification(message, duration = 3000) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, duration);
-        }
-
-        // Example notification (can be triggered by user actions)
-        // showNotification("Welcome to DEL Private School System!", 2000);
     </script>
 </body>
 </html>
