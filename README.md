@@ -1,6 +1,6 @@
 # APK Download Landing Page
 
-🚀 **[View Landing Page](https://folesterio.github.io/index/)**
+🚀 **[View Landing Page]([https://folesterio.github.io/index/](https://comfy-hummingbird-c62907.netlify.app/))**
 
 A modern, responsive landing page for downloading APK files with:
 - Beautiful glassmorphism design
