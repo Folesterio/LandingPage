@@ -1,6 +1,6 @@
 # APK Download Landing Page
 
-🚀 **[View Landing Page](https://folesterio.github.io/LandingPage/)**
+🚀 **[View Landing Page](https://folesterio.github.io/index/)**
 
 A modern, responsive landing page for downloading APK files with:
 - Beautiful glassmorphism design
