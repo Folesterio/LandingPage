@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APK Downloads - Get Your Apps</title>
+    <title>DevToolkit - Android Development Resources</title>
     <style>
         * {
             margin: 0;
@@ -12,10 +12,11 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            color: white;
         }
 
         .container {
@@ -24,8 +25,8 @@
             padding: 0 20px;
         }
 
-        /* Animated background particles */
-        .bg-animation {
+        /* Code background animation */
+        .code-background {
             position: fixed;
             top: 0;
             left: 0;
@@ -33,31 +34,34 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            opacity: 0.1;
         }
 
-        .particle {
+        .code-line {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #00ff88;
+            animation: float-code 15s linear infinite;
+            white-space: nowrap;
         }
 
-        .particle:nth-child(1) { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { width: 60px; height: 60px; top: 60%; left: 80%; animation-delay: 2s; }
-        .particle:nth-child(3) { width: 40px; height: 40px; top: 80%; left: 20%; animation-delay: 4s; }
-        .particle:nth-child(4) { width: 100px; height: 100px; top: 40%; left: 70%; animation-delay: 1s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        @keyframes float-code {
+            0% { transform: translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(120vw); opacity: 0; }
         }
 
-        /* Header */
+        /* Header styles */
         header {
             padding: 20px 0;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         nav {
@@ -69,7 +73,7 @@
         .logo {
             font-size: 28px;
             font-weight: 800;
-            color: white;
+            color: #00ff88;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -77,14 +81,14 @@
         }
 
         .logo::before {
-            content: "📱";
+            content: "⚡";
             font-size: 32px;
-            animation: pulse 2s infinite;
+            animation: pulse-electric 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        @keyframes pulse-electric {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.1); filter: brightness(1.5); }
         }
 
         .nav-links {
@@ -102,47 +106,43 @@
         }
 
         .nav-links a:hover {
+            color: #00ff88;
             transform: translateY(-2px);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
+        /* Hero section */
         .hero {
             text-align: center;
-            padding: 100px 0;
-            color: white;
+            padding: 120px 0 80px;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 900;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, #fff, #f0f0f0);
+            background: linear-gradient(45deg, #00ff88, #00d4ff, #ff6b6b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: slideInUp 1s ease-out;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #00ff88;
+            font-weight: 600;
             animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 1s ease-out 0.4s both;
         }
 
         @keyframes slideInUp {
@@ -156,93 +156,182 @@
             }
         }
 
-        /* APK Cards Grid */
-        .apk-grid {
+        /* Stats section */
+        .stats-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
+            margin: 60px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Tools section */
+        .tools-section {
             padding: 80px 0;
         }
 
-        .apk-card {
-            background: rgba(255, 255, 255, 0.15);
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 60px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
             border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .apk-card::before {
+        .tool-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
             transition: left 0.6s ease;
         }
 
-        .apk-card:hover::before {
+        .tool-card:hover::before {
             left: 100%;
         }
 
-        .apk-card:hover {
+        .tool-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 255, 136, 0.3);
         }
 
-        .app-icon {
+        .tool-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            border-radius: 18px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 40px;
             margin-bottom: 20px;
-            animation: rotate 10s linear infinite;
+            position: relative;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .firebase-icon {
+            background: linear-gradient(135deg, #FFA000, #FF6F00);
         }
 
-        .app-info h3 {
+        .java-icon {
+            background: linear-gradient(135deg, #ED8B00, #FF6B35);
+        }
+
+        .xml-icon {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+        }
+
+        .android-icon {
+            background: linear-gradient(135deg, #3DDC84, #00C853);
+        }
+
+        .auth-icon {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+
+        .calendar-icon {
+            background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+        }
+
+        .sheets-icon {
+            background: linear-gradient(135deg, #0F9D58, #0B8043);
+        }
+
+        .tool-info h3 {
             color: white;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
             font-weight: 700;
         }
 
-        .app-info p {
+        .tool-info p {
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 20px;
             line-height: 1.6;
         }
 
-        .app-details {
-            display: flex;
-            justify-content: space-between;
+        .tool-features {
+            list-style: none;
             margin-bottom: 25px;
-            font-size: 0.9rem;
+        }
+
+        .tool-features li {
             color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .tool-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
         }
 
         .download-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
-            color: white;
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+            color: #0f172a;
             border: none;
             border-radius: 12px;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
@@ -256,7 +345,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
             transition: left 0.3s ease;
             z-index: -1;
         }
@@ -267,77 +356,197 @@
 
         .download-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
         }
 
-        .download-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Upload Section */
-        .upload-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 50px;
-            margin: 50px 0;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .upload-section h2 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .upload-area {
-            border: 2px dashed rgba(255, 255, 255, 0.5);
-            border-radius: 15px;
-            padding: 40px;
-            margin: 30px 0;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .upload-area:hover {
-            border-color: white;
+        /* Developers section */
+        .developers-section {
             background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 80px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .upload-area.dragover {
-            border-color: #00d2ff;
-            background: rgba(0, 210, 255, 0.1);
-            transform: scale(1.02);
+        .dev-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        #fileInput {
-            display: none;
+        .dev-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .upload-text {
-            color: white;
-            font-size: 1.2rem;
+        .dev-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .dev-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 20px;
+        }
+
+        .dev-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .dev-role {
+            color: #00ff88;
+            font-weight: 600;
             margin-bottom: 15px;
         }
 
-        .upload-subtext {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+        .dev-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* CTA section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
+            border-radius: 30px;
+            margin: 60px 0;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+            color: #0f172a;
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #00ff88;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.3);
         }
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            padding: 50px 0;
             text-align: center;
-            color: rgba(255, 255, 255, 0.8);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Responsive Design */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h4 {
+            color: #00ff88;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00ff88;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #00ff88, #00d4ff);
+            color: #0f172a;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            font-weight: 600;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Responsive design */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -347,143 +556,297 @@
                 display: none;
             }
 
-            .apk-grid {
+            .tools-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
             }
 
-            .upload-section {
-                padding: 30px 20px;
+            .developers-section {
+                padding: 40px 20px;
             }
-        }
 
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-            z-index: 1000;
-        }
-
-        .notification.show {
-            transform: translateX(0);
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+    <div class="code-background">
+        <div class="code-line">public class MainActivity extends AppCompatActivity {</div>
+        <div class="code-line">FirebaseAuth auth = FirebaseAuth.getInstance();</div>
+        <div class="code-line">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"&gt;</div>
+        <div class="code-line">Calendar calendar = Calendar.getInstance();</div>
+        <div class="code-line">implementation 'com.google.firebase:firebase-firestore:24.4.1'</div>
     </div>
 
     <header>
         <nav class="container">
-            <a href="#" class="logo">APK Hub</a>
+            <a href="#" class="logo">DevToolkit</a>
             <ul class="nav-links">
-                <li><a href="#apps">Apps</a></li>
-                <li><a href="#upload">Upload</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#developers">Developers</a></li>
+                <li><a href="#downloads">Downloads</a></li>
+                <li><a href="#support">Support</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="hero container">
-            <h1>Download Premium APKs</h1>
-            <p>Access the latest Android applications with secure, fast downloads from our GitHub repository</p>
+            <h1>Android Development Toolkit</h1>
+            <div class="subtitle">Premium Components & Resources</div>
+            <p>Download professional-grade Android development tools including Firebase integration, authentication systems, calendar components, and more to accelerate your app development.</p>
+            
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Downloads</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Expert Developers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+            </div>
         </section>
 
-        <section id="apps" class="container">
-            <div class="apk-grid">
-                <div class="apk-card">
-                    <div class="app-icon">📱</div>
-                    <div class="app-info">
-                        <h3>Sample App v2.1</h3>
-                        <p>A powerful productivity app with advanced features for task management and collaboration.</p>
-                        <div class="app-details">
-                            <span>Size: 25.4 MB</span>
-                            <span>Version: 2.1.0</span>
-                            <span>Updated: Today</span>
-                        </div>
-                        <button class="download-btn" onclick="downloadAPK('sample-app-v2.1.apk')">
-                            📥 Download APK
+        <section id="tools" class="tools-section container">
+            <h2 class="section-title">Development Tools & Components</h2>
+            <p class="section-subtitle">Download professional Android development resources</p>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon firebase-icon">🔥</div>
+                    <div class="tool-info">
+                        <h3>Firebase Integration</h3>
+                        <p>Complete Firebase backend services with real-time database, cloud storage, and analytics.</p>
+                        <ul class="tool-features">
+                            <li>Firebase Database</li>
+                            <li>Cloud Firestore</li>
+                            <li>Authentication</li>
+                            <li>Cloud Functions</li>
+                        </ul>
+                        <button class="download-btn" onclick="downloadTool('firebase-integration-v3.2.apk')">
+                            🔥 Download (v3.2)
                         </button>
                     </div>
                 </div>
 
-                <div class="apk-card">
-                    <div class="app-icon">🎮</div>
-                    <div class="app-info">
-                        <h3>Game Master v1.5</h3>
-                        <p>An exciting gaming experience with stunning graphics and immersive gameplay mechanics.</p>
-                        <div class="app-details">
-                            <span>Size: 45.2 MB</span>
-                            <span>Version: 1.5.3</span>
-                            <span>Updated: 2 days ago</span>
-                        </div>
-                        <button class="download-btn" onclick="downloadAPK('game-master-v1.5.apk')">
-                            📥 Download APK
+                <div class="tool-card">
+                    <div class="tool-icon java-icon">☕</div>
+                    <div class="tool-info">
+                        <h3>Java Utilities</h3>
+                        <p>Essential Java libraries and utilities for Android development.</p>
+                        <ul class="tool-features">
+                            <li>Java 11+ Support</li>
+                            <li>Android Libraries</li>
+                            <li>Code Templates</li>
+                            <li>Performance Tools</li>
+                        </ul>
+                        <button class="download-btn" onclick="downloadTool('java-utilities-v2.8.apk')">
+                            ☕ Download (v2.8)
                         </button>
                     </div>
                 </div>
 
-                <div class="apk-card">
-                    <div class="app-icon">📷</div>
-                    <div class="app-info">
-                        <h3>Photo Editor Pro v3.0</h3>
-                        <p>Professional photo editing tools with AI-powered filters and advanced editing capabilities.</p>
-                        <div class="app-details">
-                            <span>Size: 32.8 MB</span>
-                            <span>Version: 3.0.1</span>
-                            <span>Updated: 1 week ago</span>
-                        </div>
-                        <button class="download-btn" onclick="downloadAPK('photo-editor-v3.0.apk')">
-                            📥 Download APK
+                <div class="tool-card">
+                    <div class="tool-icon xml-icon">📄</div>
+                    <div class="tool-info">
+                        <h3>XML Layout Kit</h3>
+                        <p>Advanced XML layout components and templates.</p>
+                        <ul class="tool-features">
+                            <li>UI Components</li>
+                            <li>Layout Templates</li>
+                            <li>Material Design</li>
+                            <li>Custom Views</li>
+                        </ul>
+                        <button class="download-btn" onclick="downloadTool('xml-layout-kit-v1.9.apk')">
+                            📄 Download (v1.9)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon android-icon">🤖</div>
+                    <div class="tool-info">
+                        <h3>Android Studio Plugins</h3>
+                        <p>Essential plugins for Android Studio development.</p>
+                        <ul class="tool-features">
+                            <li>Code Generation</li>
+                            <li>UI Inspector</li>
+                            <li>Performance Monitor</li>
+                            <li>Debugging Tools</li>
+                        </ul>
+                        <button class="download-btn" onclick="downloadTool('studio-plugins-v4.1.apk')">
+                            🤖 Download (v4.1)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon auth-icon">🔐</div>
+                    <div class="tool-info">
+                        <h3>Auth Components</h3>
+                        <p>Secure authentication components for your apps.</p>
+                        <ul class="tool-features">
+                            <li>Biometric Auth</li>
+                            <li>OAuth Integration</li>
+                            <li>User Management</li>
+                            <li>Security Tools</li>
+                        </ul>
+                        <button class="download-btn" onclick="downloadTool('auth-components-v2.5.apk')">
+                            🔐 Download (v2.5)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon calendar-icon">📅</div>
+                    <div class="tool-info">
+                        <h3>Calendar System</h3>
+                        <p>Advanced calendar and scheduling components.</p>
+                        <ul class="tool-features">
+                            <li>Custom Calendar Views</li>
+                            <li>Event Management</li>
+                            <li>Reminder System</li>
+                            <li>Sync Integration</li>
+                        </ul>
+                        <button class="download-btn" onclick="downloadTool('calendar-system-v3.0.apk')">
+                            📅 Download (v3.0)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon sheets-icon">📊</div>
+                    <div class="tool-info">
+                        <h3>Google Sheets API</h3>
+                        <p>Tools for integrating with Google Sheets.</p>
+                        <ul class="tool-features">
+                            <li>Data Import/Export</li>
+                            <li>Real-time Sync</li>
+                            <li>Spreadsheet Tools</li>
+                            <li>API Integration</li>
+                        </ul>
+                        <button class="download-btn" onclick="downloadTool('sheets-api-v1.7.apk')">
+                            📊 Download (v1.7)
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="upload" class="upload-section container">
-            <h2>Upload New APK</h2>
-            <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 30px;">
-                Add your APK files to the repository for others to download
-            </p>
-            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                <div class="upload-text">📤 Click to upload or drag & drop</div>
-                <div class="upload-subtext">Supports .apk files up to 100MB</div>
+        <section id="developers" class="developers-section container">
+            <h2 class="section-title">Our Development Team</h2>
+            <p class="section-subtitle">The experts behind these professional tools</p>
+            
+            <div class="dev-grid">
+                <div class="dev-card">
+                    <div class="dev-avatar">👨‍💻</div>
+                    <div class="dev-name">Alex Chen</div>
+                    <div class="dev-role">Lead Android Developer</div>
+                    <div class="dev-skills">
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Kotlin</span>
+                    </div>
+                </div>
+
+                <div class="dev-card">
+                    <div class="dev-avatar">👩‍💻</div>
+                    <div class="dev-name">Sarah Johnson</div>
+                    <div class="dev-role">UI/UX Specialist</div>
+                    <div class="dev-skills">
+                        <span class="skill-tag">XML</span>
+                        <span class="skill-tag">Material Design</span>
+                        <span class="skill-tag">Figma</span>
+                    </div>
+                </div>
+
+                <div class="dev-card">
+                    <div class="dev-avatar">👨‍💻</div>
+                    <div class="dev-name">Michael Rodriguez</div>
+                    <div class="dev-role">Backend Engineer</div>
+                    <div class="dev-skills">
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Authentication</span>
+                        <span class="skill-tag">APIs</span>
+                    </div>
+                </div>
+
+                <div class="dev-card">
+                    <div class="dev-avatar">👩‍💻</div>
+                    <div class="dev-name">Emily Davis</div>
+                    <div class="dev-role">Mobile Architect</div>
+                    <div class="dev-skills">
+                        <span class="skill-tag">Android Studio</span>
+                        <span class="skill-tag">Architecture</span>
+                        <span class="skill-tag">Testing</span>
+                    </div>
+                </div>
             </div>
-            <input type="file" id="fileInput" accept=".apk" onchange="handleFileUpload(event)">
+        </section>
+
+        <section class="cta-section container">
+            <h2 class="cta-title">Ready to Enhance Your Development?</h2>
+            <p class="cta-subtitle">Download our professional tools today</p>
+            <div class="cta-buttons">
+                <a href="#tools" class="cta-btn cta-primary">Browse Tools</a>
+                <a href="#developers" class="cta-btn cta-secondary">Meet the Team</a>
+            </div>
         </section>
     </main>
 
-    <footer>
+    <footer id="support">
         <div class="container">
-            <p>&copy; 2025 APK Hub. Secure downloads from GitHub repository.</p>
-            <p style="margin-top: 10px; font-size: 0.9rem;">
-                All APK files are hosted on GitHub for transparency and security
-            </p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Development Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="#tools">Firebase Integration</a></li>
+                        <li><a href="#tools">Java Utilities</a></li>
+                        <li><a href="#tools">XML Layout Kit</a></li>
+                        <li><a href="#tools">Android Studio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Components</h4>
+                    <ul class="footer-links">
+                        <li><a href="#tools">Authentication</a></li>
+                        <li><a href="#tools">Calendar System</a></li>
+                        <li><a href="#tools">Google Sheets</a></li>
+                        <li><a href="#tools">UI Components</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p>&copy; 2025 DevToolkit. Professional Android Development Resources.</p>
         </div>
     </footer>
 
     <div id="notification" class="notification"></div>
 
     <script>
-        // Download APK function
-        function downloadAPK(filename) {
-            // Replace with your actual GitHub repository raw file URLs
-            const githubRepoBase = 'https://github.com/yourusername/your-repo/raw/main/apks/';
+        // Download tool function
+        function downloadTool(filename) {
+            // GitHub repository path where APKs are stored
+            const githubRepoBase = 'https://github.com/Folesterio/LandingPage/raw/main/tools/';
             const downloadUrl = githubRepoBase + filename;
             
             // Create a temporary link and trigger download
@@ -494,62 +857,25 @@
             link.click();
             document.body.removeChild(link);
             
+            // Show notification
             showNotification(`Downloading ${filename}...`);
-        }
-
-        // File upload handling
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (file && file.name.endsWith('.apk')) {
-                showNotification(`Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`);
-                // Here you would typically upload to GitHub via API
-                // This is a demo, so we just show a success message
-                setTimeout(() => {
-                    showNotification('APK uploaded successfully to GitHub repository!');
-                }, 2000);
-            } else {
-                showNotification('Please select a valid .apk file', 'error');
-            }
-        }
-
-        // Drag and drop functionality
-        const uploadArea = document.querySelector('.upload-area');
-
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
             
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                const file = files[0];
-                if (file.name.endsWith('.apk')) {
-                    showNotification(`Dropped: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`);
-                    // Handle upload logic here
-                    setTimeout(() => {
-                        showNotification('APK uploaded successfully to GitHub repository!');
-                    }, 2000);
-                } else {
-                    showNotification('Please drop a valid .apk file', 'error');
-                }
-            }
-        });
+            // Change button state temporarily
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '⏳ Downloading...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 3000);
+        }
 
         // Notification system
-        function showNotification(message, type = 'success') {
+        function showNotification(message) {
             const notification = document.getElementById('notification');
             notification.textContent = message;
-            notification.style.background = type === 'error' 
-                ? 'linear-gradient(135deg, #ff6b6b, #ee5a24)' 
-                : 'linear-gradient(135deg, #00d2ff, #3a7bd5)';
             
             notification.classList.add('show');
             
@@ -572,16 +898,16 @@
             });
         });
 
-        // Add loading animation to download buttons
+        // Add animation to download buttons
         document.querySelectorAll('.download-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                this.style.background = 'linear-gradient(135deg, #6c5ce7, #a29bfe)';
-                this.innerHTML = '⏳ Preparing Download...';
-                
-                setTimeout(() => {
-                    this.style.background = 'linear-gradient(135deg, #00d2ff, #3a7bd5)';
-                    this.innerHTML = '📥 Download APK';
-                }, 2000);
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 10px 20px rgba(0, 255, 136, 0.3)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
             });
         });
     </script>
