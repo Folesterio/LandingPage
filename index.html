@@ -1332,7 +1332,7 @@
                 <h2 class="section-title">Download Our App</h2>
                 <p class="section-subtitle">Get the DEL Private School app for your Android device</p>
                 
-                <button id="apk-download" class="download-btn">
+                <button id="apk-download" class="download-btn" onclick="downloadAPK()">
                     <i class="fas fa-download"></i>
                     Download APK (v1.0.0)
                 </button>
@@ -1386,6 +1386,21 @@
     <div id="notification" class="notification"></div>
 
     <script>
+        function downloadAPK() {
+            // Method 1: Direct GitHub raw link
+            const downloadUrl = 'https://github.com/Folesterio/LandingPage/raw/main/Del_Private_School.apk';
+            
+            // Create temporary link and trigger download
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = 'Del_Private_School.apk';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show notification
+            showNotification('Download started! Check your downloads folder.', 3000);
+        }
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
