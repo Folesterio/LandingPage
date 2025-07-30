@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEL PRIVATE SCHOOL - Student Management System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00ff88;
@@ -54,14 +57,15 @@
             z-index: 1000;
             transition: all 0.3s ease;
             padding: 1rem 0;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             background: rgba(15, 23, 42, 0.9);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         header.scrolled {
             padding: 0.5rem 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(15, 23, 42, 0.95);
         }
 
         nav {
@@ -78,6 +82,11 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-icon {
@@ -112,7 +121,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             transition: width 0.3s ease;
         }
 
@@ -131,6 +140,11 @@
             color: var(--light);
             font-size: 1.5rem;
             cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary);
         }
 
         /* Hero section */
@@ -138,7 +152,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 6rem 0 4rem;
+            padding: 8rem 0 4rem;
             position: relative;
             overflow: hidden;
         }
@@ -162,7 +176,7 @@
 
         .hero-content {
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -191,6 +205,9 @@
             margin-bottom: 2.5rem;
             opacity: 0.9;
             animation: fadeInUp 1s ease-out 0.4s both;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @keyframes fadeInUp {
@@ -207,47 +224,70 @@
         /* Stats section */
         .stats-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.5rem;
-            margin: 4rem 0;
+            margin: 4rem 0 2rem;
         }
 
         .stat-card {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             border-radius: 1rem;
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
             text-align: center;
             border: 1px solid rgba(0, 255, 136, 0.2);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.3);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
             color: var(--primary);
             margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            font-weight: 500;
         }
 
-        /* Roles section */
-        .roles-section {
-            padding: 5rem 0;
+        /* Section styles */
+        .section {
+            padding: 6rem 0;
         }
 
         .section-title {
             text-align: center;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 800;
             margin-bottom: 1rem;
             color: var(--light);
@@ -257,23 +297,24 @@
             text-align: center;
             font-size: clamp(1rem, 1.5vw, 1.25rem);
             opacity: 0.8;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
+        /* Roles section */
         .roles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
 
         .role-card {
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            border-radius: 1.25rem;
-            padding: 2rem;
+            backdrop-filter: blur(15px);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s ease;
             position: relative;
@@ -288,7 +329,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            transition: left 0.6s ease;
+            transition: left 0.8s ease;
         }
 
         .role-card:hover::before {
@@ -296,21 +337,22 @@
         }
 
         .role-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(0, 255, 136, 0.4);
         }
 
         .role-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 1rem;
+            width: 90px;
+            height: 90px;
+            border-radius: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             position: relative;
+            color: white;
         }
 
         .student-icon {
@@ -327,26 +369,28 @@
 
         .role-info h3 {
             color: var(--light);
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
 
         .role-info p {
             color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
 
         .role-features {
             list-style: none;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .role-features li {
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 0.75rem;
-            padding-left: 1.75rem;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
             position: relative;
+            font-weight: 500;
         }
 
         .role-features li::before {
@@ -355,11 +399,13 @@
             left: 0;
             color: var(--primary);
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
+        /* Button styles */
         .btn {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             border-radius: 0.75rem;
             font-size: 1rem;
             font-weight: 600;
@@ -368,6 +414,23 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
@@ -377,332 +440,7 @@
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
-        }
-
-        .btn-block {
-            display: block;
-            width: 100%;
-        }
-         /* Developers Section */
-         .developers-section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 1.5rem;
-            padding: 4rem;
-            margin: 4rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .dev-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .dev-card {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .dev-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
-            border-color: var(--primary);
-        }
-
-        .dev-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin: 0 auto 1.5rem;
-            color: var(--dark);
-        }
-
-        .dev-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .dev-role {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .dev-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            background: rgba(0, 255, 136, 0.2);
-            color: var(--primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        /* Download Section */
-        .download-section {
-            text-align: center;
-            padding: 5rem 0;
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
-            border-radius: 1.5rem;
-            margin: 4rem 0;
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--dark);
-            border-radius: 1rem;
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            margin-top: 2rem;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            padding: 4rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: inline-block;
-            padding: 0.25rem 0;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: var(--light);
-            font-size: 1.25rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
-        }
-
-        /* Responsive design */
-        @media (max-width: 992px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--dark-light);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                transition: all 0.5s ease;
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero {
-                padding: 8rem 0 4rem;
-            }
-
-            .developers-section {
-                padding: 3rem 1.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.25rem;
-            }
-
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .dev-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--dark);
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-            z-index: 1000;
-            font-weight: 600;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        /* Features section */
-        .features-section {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 1.5rem;
-            padding: 4rem;
-            margin: 4rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.2);
-            border-color: var(--primary);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .feature-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-desc {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* CTA section */
-        .cta-section {
-            text-align: center;
-            padding: 5rem 0;
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
-            border-radius: 1.5rem;
-            margin: 4rem 0;
-        }
-
-        .cta-title {
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .cta-subtitle {
-            font-size: clamp(1rem, 1.5vw, 1.25rem);
-            opacity: 0.8;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
         }
 
         .btn-secondary {
@@ -717,181 +455,71 @@
             box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
         }
 
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            padding: 4rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .btn-block {
+            display: block;
+            width: 100%;
         }
 
-        .footer-content {
+        /* Features section */
+        .features-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 2rem;
+            padding: 5rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-bottom: 2rem;
+            margin-top: 3rem;
         }
 
-        .footer-section h4 {
+        .feature-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
             color: var(--primary);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            font-size: 1.25rem;
         }
 
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
+        .feature-desc {
             color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: inline-block;
-            padding: 0.25rem 0;
+            line-height: 1.7;
         }
 
-        .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: var(--light);
-            font-size: 1.25rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
-        }
-
-        /* Responsive design */
-        @media (max-width: 992px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: var(--dark-light);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                transition: all 0.5s ease;
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero {
-                padding: 8rem 0 4rem;
-            }
-
-            .features-section {
-                padding: 3rem 1.5rem;
-            }
-
-            .cta-section {
-                padding: 3rem 1.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.25rem;
-            }
-
-            .roles-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
- /* Tools & APIs Section */
- .tools-section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--light);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: clamp(1rem, 1.5vw, 1.25rem);
-            opacity: 0.8;
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
+        /* Tools section */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .tool-card {
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            border-radius: 1.25rem;
-            padding: 2rem;
+            backdrop-filter: blur(15px);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s ease;
             position: relative;
@@ -906,7 +534,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            transition: left 0.6s ease;
+            transition: left 0.8s ease;
         }
 
         .tool-card:hover::before {
@@ -914,21 +542,22 @@
         }
 
         .tool-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(0, 255, 136, 0.4);
         }
 
         .tool-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 1rem;
+            width: 90px;
+            height: 90px;
+            border-radius: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             position: relative;
+            color: white;
         }
 
         .firebase-icon {
@@ -949,14 +578,15 @@
 
         .tool-info h3 {
             color: var(--light);
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
 
         .tool-info p {
             color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
 
         .tool-features {
@@ -966,9 +596,10 @@
 
         .tool-features li {
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 0.75rem;
-            padding-left: 1.75rem;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
             position: relative;
+            font-weight: 500;
         }
 
         .tool-features li::before {
@@ -977,7 +608,235 @@
             left: 0;
             color: var(--primary);
             font-weight: bold;
+            font-size: 1.2rem;
         }
+
+        /* Developers section */
+        .developers-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 2rem;
+            padding: 5rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dev-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .dev-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dev-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+            border-color: var(--primary);
+        }
+
+        .dev-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 2rem;
+            color: var(--dark);
+        }
+
+        .dev-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .dev-role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .dev-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        /* CTA section */
+        .cta-section {
+            text-align: center;
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
+            border-radius: 2rem;
+            margin: 4rem 0;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Download section */
+        .download-section {
+            text-align: center;
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
+            border-radius: 2rem;
+            margin: 4rem 0;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            border-radius: 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            padding: 5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 0.25rem 0;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+            background: rgba(0, 255, 136, 0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
         /* Notification */
         .notification {
             position: fixed;
@@ -986,16 +845,133 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: var(--dark);
             padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 0.75rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             transform: translateX(400px);
             transition: transform 0.3s ease;
-            z-index: 1000;
+            z-index: 1001;
             font-weight: 600;
+            max-width: 300px;
         }
 
         .notification.show {
             transform: translateX(0);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(30, 41, 59, 0.95);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 3rem;
+                transition: all 0.5s ease;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 10rem 0 4rem;
+            }
+
+            .features-section,
+            .developers-section {
+                padding: 3rem 2rem;
+            }
+
+            .cta-section,
+            .download-section {
+                padding: 4rem 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .roles-grid,
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid,
+            .dev-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .features-section,
+            .developers-section {
+                padding: 2rem 1rem;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+
+            .notification {
+                right: 10px;
+                left: 10px;
+                transform: translateY(-100px);
+                max-width: none;
+            }
+
+            .notification.show {
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .loading.loaded {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -1009,9 +985,9 @@
             <ul class="nav-links">
                 <li><a href="#roles">User Roles</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#cta">Get Started</a></li>
                 <li><a href="#tools">Tools & APIs</a></li>
-                <li><a href="#Download">Download</a></li>
+                <li><a href="#developers">Team</a></li>
+                <li><a href="#download">Download</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="mobile-menu-btn">
@@ -1031,83 +1007,83 @@
                     and <strong>Administrators</strong> have complete control over student enrollment and data management.
                 </p>
                 <div class="stats-section">
-                    <div class="stat-card floating" style="animation-delay: 0s;">
+                    <div class="stat-card floating loading" style="animation-delay: 0s;">
                         <div class="stat-number">1,200+</div>
-                        <div class="stat-label">Students</div>
+                        <div class="stat-label">Students Enrolled</div>
                     </div>
-                    <div class="stat-card floating" style="animation-delay: 0.2s;">
+                    <div class="stat-card floating loading" style="animation-delay: 0.2s;">
                         <div class="stat-number">85</div>
-                        <div class="stat-label">Teachers</div>
+                        <div class="stat-label">Faculty Members</div>
                     </div>
-                    <div class="stat-card floating" style="animation-delay: 0.4s;">
+                    <div class="stat-card floating loading" style="animation-delay: 0.4s;">
                         <div class="stat-number">99.9%</div>
-                        <div class="stat-label">Uptime</div>
+                        <div class="stat-label">System Uptime</div>
                     </div>
-                    <div class="stat-card floating" style="animation-delay: 0.6s;">
+                    <div class="stat-card floating loading" style="animation-delay: 0.6s;">
                         <div class="stat-number">24/7</div>
-                        <div class="stat-label">Support</div>
+                        <div class="stat-label">Technical Support</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="roles" class="roles-section">
+        <section id="roles" class="section">
             <div class="container">
                 <h2 class="section-title">User Roles & Permissions</h2>
-                <p class="section-subtitle">Different access levels for students, teachers, and administrators</p>
+                <p class="section-subtitle">Tailored access levels designed for students, teachers, and administrators with comprehensive security protocols</p>
                 
                 <div class="roles-grid">
-                    <div class="role-card">
+                    <div class="role-card loading">
                         <div class="role-icon student-icon">
                             <i class="fas fa-user-graduate"></i>
                         </div>
                         <div class="role-info">
-                            <h3>Student Access</h3>
-                            <p>Students can securely access their academic information and performance metrics.</p>
+                            <h3>Student Access Portal</h3>
+                            <p>Students can securely access their academic information, track progress, and view performance metrics through our intuitive dashboard.</p>
                             <ul class="role-features">
-                                <li>View personal grades and transcripts</li>
-                                <li>Monitor academic progress</li>
-                                <li>Access course materials</li>
-                                <li>View attendance records</li>
-                                <li>No editing permissions</li>
+                                <li>View personal grades and comprehensive transcripts</li>
+                                <li>Monitor real-time academic progress and GPA</li>
+                                <li>Access course materials and assignments</li>
+                                <li>View detailed attendance records and reports</li>
+                                <li>Secure read-only access with no editing permissions</li>
                             </ul>
-                            <a href="#cta" class="btn btn-primary btn-block">Student Login</a>
+                            <a href="#cta" class="btn btn-primary btn-block">Access Student Portal</a>
                         </div>
                     </div>
 
-                    <div class="role-card">
+                    <div class="role-card loading">
                         <div class="role-icon teacher-icon">
                             <i class="fas fa-chalkboard-teacher"></i>
                         </div>
                         <div class="role-info">
-                            <h3>Teacher Access</h3>
-                            <p>Teachers can manage and update student academic records with controlled permissions.</p>
+                            <h3>Teacher Dashboard</h3>
+                            <p>Teachers can efficiently manage student records, input grades, and access comprehensive analytics with controlled permissions.</p>
                             <ul class="role-features">
-                                <li>Upload and edit student grades</li>
-                                <li>View class performance analytics</li>
-                                <li>Submit attendance records</li>
-                                <li>Manage course content</li>
-                                <li>Cannot delete grade records</li>
+                                <li>Upload and edit student grades and assessments</li>
+                                <li>View detailed class performance analytics</li>
+                                <li>Submit and manage attendance records</li>
+                                <li>Access and manage course content library</li>
+                                <li>Secure editing rights with audit trail protection</li>
                             </ul>
                             <a href="#cta" class="btn btn-primary btn-block">Teacher Login</a>
                         </div>
                     </div>
 
-                    <div class="role-card">
+                    <div class="role-card loading">
                         <div class="role-icon admin-icon">
                             <i class="fas fa-user-shield"></i>
                         </div>
                         <div class="role-info">
-                            <h3>Admin Access</h3>
-                            <p>Administrators have full control over the student information system.</p>
+                            <h3>Administrator Control Panel</h3>
+                            <p>Administrators have comprehensive system control with full CRUD operations and advanced management capabilities.</p>
                             <ul class="role-features">
-                                <li>Create, read, update, delete student records</li>
-                                <li>Enroll new students</li>
-                                <li>Manage all academic data</li>
-                                <li>Generate comprehensive reports</li>
-                                <li>Full system configuration</li>
+                                <li>Complete student record management (CRUD operations)</li>
+                                <li>Student enrollment and registration processing</li>
+                                <li>System-wide academic data management</li>
+                                <li>Generate comprehensive analytical reports</li>
+                                <li>Full system configuration and user management</li>
                             </ul>
-                            <a href="#cta" class="btn btn-primary btn-block">Admin Login</a>
+                            <a href="#cta" class="btn btn-primary btn-block">Admin Access</a>
                         </div>
                     </div>
                 </div>
@@ -1116,150 +1092,143 @@
 
         <section id="features" class="features-section">
             <div class="container">
-                <h2 class="section-title">System Features</h2>
-                <p class="section-subtitle">Comprehensive tools for academic management</p>
+                <h2 class="section-title">Advanced System Features</h2>
+                <p class="section-subtitle">Comprehensive educational management tools designed for modern academic institutions</p>
                 
                 <div class="features-grid">
-                    <div class="feature-card">
+                    <div class="feature-card loading">
                         <div class="feature-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <h3 class="feature-title">Grade Management</h3>
+                        <h3 class="feature-title">Advanced Grade Management</h3>
                         <p class="feature-desc">
-                            Robust gradebook system with support for multiple grading scales, weighted assignments, and customizable categories.
+                            Sophisticated gradebook system supporting multiple grading scales, weighted assignments, customizable categories, and automated GPA calculations.
                         </p>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card loading">
                         <div class="feature-icon">
                             <i class="fas fa-calendar-check"></i>
                         </div>
-                        <h3 class="feature-title">Attendance Tracking</h3>
+                        <h3 class="feature-title">Smart Attendance Tracking</h3>
                         <p class="feature-desc">
-                            Comprehensive attendance system with automated notifications for absences and detailed reporting.
+                            Intelligent attendance system with automated notifications, absence alerts, detailed reporting, and integration with academic performance metrics.
                         </p>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card loading">
                         <div class="feature-icon">
-                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h3 class="feature-title">Role-Based Security</h3>
+                        <h3 class="feature-title">Enterprise Security</h3>
                         <p class="feature-desc">
-                            Granular permissions system ensuring data security and appropriate access levels for all users.
+                            Military-grade security with role-based permissions, multi-factor authentication, data encryption, and comprehensive audit trails.
                         </p>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card loading">
                         <div class="feature-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
-                        <h3 class="feature-title">Mobile Access</h3>
+                        <h3 class="feature-title">Cross-Platform Access</h3>
                         <p class="feature-desc">
-                            Fully responsive design with mobile apps available for iOS and Android platforms.
+                            Fully responsive design with native mobile applications for iOS and Android, ensuring seamless access across all devices.
                         </p>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card loading">
                         <div class="feature-icon">
-                            <i class="fas fa-chart-pie"></i>
+                            <i class="fas fa-analytics"></i>
                         </div>
-                        <h3 class="feature-title">Analytics Dashboard</h3>
+                        <h3 class="feature-title">AI-Powered Analytics</h3>
                         <p class="feature-desc">
-                            Visual analytics and reporting tools to track student performance and identify trends.
+                            Advanced analytics dashboard with machine learning insights, predictive performance modeling, and comprehensive data visualizations.
                         </p>
                     </div>
 
-                    <div class="feature-card">
+                    <div class="feature-card loading">
                         <div class="feature-icon">
-                            <i class="fas fa-exchange-alt"></i>
+                            <i class="fas fa-network-wired"></i>
                         </div>
-                        <h3 class="feature-title">Data Integration</h3>
+                        <h3 class="feature-title">Seamless Integration</h3>
                         <p class="feature-desc">
-                            Seamless integration with other school systems and third-party educational tools.
+                            Enterprise-grade API integration with third-party educational tools, LMS platforms, and existing school management systems.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="cta" class="cta-section">
+        <section id="tools" class="section">
             <div class="container">
-                <h2 class="cta-title">Ready to Access the System?</h2>
-                <p class="cta-subtitle">Choose your login method based on your role</p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">Student Login</a>
-                    <a href="#" class="btn btn-secondary">Teacher Login</a>
-                    <a href="#" class="btn btn-primary">Admin Login</a>
-                </div>
-            </div>
-        </section>
-        <section id="tools" class="tools-section">
-            <div class="container">
-                <h2 class="section-title">Tools & APIs</h2>
-                <p class="section-subtitle">Powerful technologies powering our platform</p>
+                <h2 class="section-title">Technology Stack & APIs</h2>
+                <p class="section-subtitle">Cutting-edge technologies powering our robust educational platform</p>
                 
                 <div class="tools-grid">
-                    <div class="tool-card">
+                    <div class="tool-card loading">
                         <div class="tool-icon firebase-icon">
                             <i class="fas fa-fire"></i>
                         </div>
                         <div class="tool-info">
-                            <h3>Firebase Integration</h3>
-                            <p>Real-time database and authentication services for secure data management.</p>
+                            <h3>Firebase Cloud Platform</h3>
+                            <p>Google's comprehensive app development platform providing real-time database, authentication, and cloud storage solutions.</p>
                             <ul class="tool-features">
-                                <li>Cloud Firestore database</li>
-                                <li>User authentication</li>
-                                <li>Real-time updates</li>
-                                <li>Secure cloud storage</li>
+                                <li>Cloud Firestore NoSQL database</li>
+                                <li>Firebase Authentication & Security Rules</li>
+                                <li>Real-time data synchronization</li>
+                                <li>Secure cloud storage with CDN</li>
+                                <li>Advanced analytics and crash reporting</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="tool-card">
+                    <div class="tool-card loading">
                         <div class="tool-icon java-icon">
                             <i class="fab fa-java"></i>
                         </div>
                         <div class="tool-info">
-                            <h3>Java Backend</h3>
-                            <p>Robust server-side processing for all academic operations.</p>
+                            <h3>Java Enterprise Backend</h3>
+                            <p>Robust, scalable server-side architecture built with Java Spring Boot for handling complex academic operations.</p>
                             <ul class="tool-features">
-                                <li>Spring Boot framework</li>
-                                <li>RESTful APIs</li>
-                                <li>High performance</li>
-                                <li>Secure data processing</li>
+                                <li>Spring Boot microservices architecture</li>
+                                <li>RESTful API endpoints with OpenAPI documentation</li>
+                                <li>High-performance data processing</li>
+                                <li>Enterprise-grade security implementation</li>
+                                <li>Automated testing and deployment pipelines</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="tool-card">
+                    <div class="tool-card loading">
                         <div class="tool-icon sheets-icon">
                             <i class="fas fa-table"></i>
                         </div>
                         <div class="tool-info">
-                            <h3>Google Sheets API</h3>
-                            <p>Seamless integration with Google Sheets for data export.</p>
+                            <h3>Google Sheets Integration</h3>
+                            <p>Seamless integration with Google Workspace for data export, collaboration, and automated report generation.</p>
                             <ul class="tool-features">
-                                <li>Export grade reports</li>
-                                <li>Automatic data sync</li>
-                                <li>Custom templates</li>
-                                <li>Real-time collaboration</li>
+                                <li>Automated grade report exports</li>
+                                <li>Real-time data synchronization</li>
+                                <li>Custom report templates and formatting</li>
+                                <li>Collaborative data analysis tools</li>
+                                <li>Scheduled automated backups</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="tool-card">
+                    <div class="tool-card loading">
                         <div class="tool-icon auth-icon">
-                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-key"></i>
                         </div>
                         <div class="tool-info">
-                            <h3>Authentication API</h3>
-                            <p>Secure role-based access control for all users.</p>
+                            <h3>Advanced Authentication</h3>
+                            <p>Multi-layered security system with role-based access control and comprehensive user management.</p>
                             <ul class="tool-features">
-                                <li>JWT token based</li>
-                                <li>Multi-factor auth</li>
-                                <li>Role permissions</li>
-                                <li>Activity logging</li>
+                                <li>JWT token-based authentication</li>
+                                <li>Multi-factor authentication (MFA)</li>
+                                <li>Granular role-based permissions</li>
+                                <li>Comprehensive activity logging</li>
+                                <li>OAuth2 and SSO integration</li>
                             </ul>
                         </div>
                     </div>
@@ -1269,77 +1238,97 @@
 
         <section id="developers" class="developers-section">
             <div class="container">
-                <h2 class="section-title">Our Development Team</h2>
-                <p class="section-subtitle">The talented professionals behind our platform</p>
+                <h2 class="section-title">Our Expert Development Team</h2>
+                <p class="section-subtitle">Meet the talented professionals who crafted this innovative educational platform</p>
                 
                 <div class="dev-grid">
-                    <div class="dev-card">
+                    <div class="dev-card loading">
                         <div class="dev-avatar">
                             <i class="fas fa-user-tie"></i>
                         </div>
                         <div class="dev-name">Alex Johnson</div>
-                        <div class="dev-role">Lead Developer</div>
+                        <div class="dev-role">Lead Full-Stack Developer</div>
                         <div class="dev-skills">
-                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Java Spring</span>
                             <span class="skill-tag">Firebase</span>
                             <span class="skill-tag">Android</span>
+                            <span class="skill-tag">DevOps</span>
                         </div>
                     </div>
 
-                    <div class="dev-card">
+                    <div class="dev-card loading">
                         <div class="dev-avatar">
-                            <i class="fas fa-user-graduate"></i>
+                            <i class="fas fa-palette"></i>
                         </div>
                         <div class="dev-name">Sarah Williams</div>
-                        <div class="dev-role">UI/UX Designer</div>
+                        <div class="dev-role">Senior UI/UX Designer</div>
                         <div class="dev-skills">
                             <span class="skill-tag">Figma</span>
-                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">CSS3</span>
                             <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Design Systems</span>
                         </div>
                     </div>
 
-                    <div class="dev-card">
+                    <div class="dev-card loading">
                         <div class="dev-avatar">
-                            <i class="fas fa-user-cog"></i>
+                            <i class="fas fa-server"></i>
                         </div>
                         <div class="dev-name">Michael Chen</div>
-                        <div class="dev-role">Backend Engineer</div>
+                        <div class="dev-role">Backend Systems Engineer</div>
                         <div class="dev-skills">
                             <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">API</span>
-                            <span class="skill-tag">Database</span>
+                            <span class="skill-tag">API Design</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Cloud Architecture</span>
                         </div>
                     </div>
 
-                    <div class="dev-card">
+                    <div class="dev-card loading">
                         <div class="dev-avatar">
-                            <i class="fas fa-user-shield"></i>
+                            <i class="fas fa-shield-alt"></i>
                         </div>
                         <div class="dev-name">Emily Rodriguez</div>
-                        <div class="dev-role">Security Specialist</div>
+                        <div class="dev-role">Cybersecurity Specialist</div>
                         <div class="dev-skills">
-                            <span class="skill-tag">Security</span>
+                            <span class="skill-tag">Penetration Testing</span>
                             <span class="skill-tag">Encryption</span>
-                            <span class="skill-tag">Auth</span>
+                            <span class="skill-tag">OAuth2</span>
+                            <span class="skill-tag">Compliance</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="cta" class="cta-section">
+            <div class="container">
+                <h2 class="cta-title">Ready to Transform Education?</h2>
+                <p class="cta-subtitle">Choose your access level and experience the future of academic management</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" onclick="showNotification('Student portal access coming soon!', 3000)">Student Login</a>
+                    <a href="#" class="btn btn-secondary" onclick="showNotification('Teacher dashboard launching soon!', 3000)">Teacher Portal</a>
+                    <a href="#" class="btn btn-primary" onclick="showNotification('Administrator access available on request!', 3000)">Admin Console</a>
+                </div>
+            </div>
+        </section>
+
         <section id="download" class="download-section">
             <div class="container">
-                <h2 class="section-title">Download Our App</h2>
-                <p class="section-subtitle">Get the DEL Private School app for your Android device</p>
+                <h2 class="section-title">Download Our Mobile App</h2>
+                <p class="section-subtitle">Get the DEL Private School mobile application for seamless access on your Android device</p>
                 
                 <a href="https://github.com/Folesterio/LandingPage/releases/download/v1.0.0/Del.Private.School.apk" 
-                class="download-btn" 
-                download="Del_Private_School.apk"
-                onclick="trackDownload()">
-                 <i class="fas fa-download"></i>
-                 Download APK (v1.0.0)
-             </a>
+                   class="download-btn" 
+                   download="Del_Private_School.apk"
+                   onclick="trackDownload()">
+                    <i class="fas fa-download"></i>
+                    Download APK (v1.0.0)
+                </a>
+                
+                <div style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">
+                    <p><i class="fas fa-info-circle"></i> System Requirements: Android 5.0+ | Size: ~15MB</p>
+                </div>
             </div>
         </section>
     </main>
@@ -1348,41 +1337,44 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
+                    <h4>Quick Navigation</h4>
                     <ul class="footer-links">
-                        <li><a href="#roles">User Roles</a></li>
+                        <li><a href="#roles">User Access Levels</a></li>
                         <li><a href="#features">System Features</a></li>
-                        <li><a href="#cta">Login Portal</a></li>
-                        <li><a href="#">School Website</a></li>
+                        <li><a href="#tools">Technology Stack</a></li>
+                        <li><a href="#developers">Development Team</a></li>
+                        <li><a href="#download">Mobile App</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Support</h4>
+                    <h4>Support & Resources</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">User Guides</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">System Requirements</a></li>
+                        <li><a href="#" onclick="showNotification('Help documentation coming soon!', 2000)">Help Center</a></li>
+                        <li><a href="#" onclick="showNotification('User guides will be available soon!', 2000)">User Guides</a></li>
+                        <li><a href="#" onclick="showNotification('FAQ section under development!', 2000)">Frequently Asked Questions</a></li>
+                        <li><a href="#" onclick="showNotification('System requirements updated!', 2000)">Technical Requirements</a></li>
+                        <li><a href="#" onclick="showNotification('API documentation coming soon!', 2000)">API Documentation</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Contact Us</h4>
+                    <h4>Contact Information</h4>
                     <ul class="footer-links">
-                        <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a></li>
-                        <li><a href="mailto:info@delschool.edu"><i class="fas fa-envelope"></i> info@delschool.edu</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 School Avenue</li>
-                        <li>Education City, EC 12345</li>
+                        <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> +1 (234) 567-8900</a></li>
+                        <li><a href="mailto:admin@delschool.edu"><i class="fas fa-envelope"></i> admin@delschool.edu</a></li>
+                        <li><a href="mailto:support@delschool.edu"><i class="fas fa-headset"></i> support@delschool.edu</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education Boulevard</li>
+                        <li style="padding-left: 1.5rem;">Academic District, ED 12345</li>
                     </ul>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" onclick="showNotification('Follow us on Facebook!', 2000)" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" onclick="showNotification('Follow us on Twitter!', 2000)" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" onclick="showNotification('Follow us on Instagram!', 2000)" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" onclick="showNotification('Connect on LinkedIn!', 2000)" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2023 DEL PRIVATE SCHOOL. All rights reserved.
+                <p>&copy; 2024 DEL PRIVATE SCHOOL. All rights reserved. | Privacy Policy | Terms of Service | Academic Integrity</p>
             </div>
         </div>
     </footer>
@@ -1390,29 +1382,53 @@
     <div id="notification" class="notification"></div>
 
     <script>
-        function downloadAPK() {
-            // Method 1: Direct GitHub raw link
-            const downloadUrl = 'https://github.com/Folesterio/LandingPage/releases/download/v1.0.0/Del.Private.School.apk';
-            
-            // Create temporary link and trigger download
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = 'Del_Private_School.apk';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Show notification
-            showNotification('Download started! Check your downloads folder.', 3000);
+        // Enhanced download function with error handling
+        function trackDownload() {
+            try {
+                showNotification('Download started! Please wait while the file is being downloaded...', 4000);
+                
+                // Track download analytics (placeholder)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'download', {
+                        'event_category': 'Mobile App',
+                        'event_label': 'DEL Private School APK v1.0.0'
+                    });
+                }
+                
+                // Show additional info after delay
+                setTimeout(() => {
+                    showNotification('If download doesn\'t start automatically, please check your browser settings.', 3000);
+                }, 2000);
+                
+            } catch (error) {
+                console.error('Download tracking error:', error);
+                showNotification('Download initiated. Please check your downloads folder.', 3000);
+            }
         }
-        // Mobile menu toggle
+
+        // Enhanced mobile menu functionality
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
+        let menuOpen = false;
 
         mobileMenuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
             navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+            mobileMenuBtn.innerHTML = menuOpen ? 
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = menuOpen ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (menuOpen && !nav.contains(e.target)) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = '';
+                menuOpen = false;
+            }
         });
 
         // Close mobile menu when clicking a link
@@ -1420,71 +1436,155 @@
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = '';
+                menuOpen = false;
             });
         });
 
-        // Header scroll effect
+        // Enhanced header scroll effect
         const header = document.getElementById('header');
+        let lastScrollY = window.scrollY;
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
+            
+            // Hide header on scroll down, show on scroll up
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
         });
 
-        // Smooth scrolling for navigation
+        // Enhanced smooth scrolling with offset calculation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
                 if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
                     window.scrollTo({
-                        top: target.offsetTop - 70,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Animation on scroll
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.role-card, .feature-card');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
+        // Enhanced animation on scroll with intersection observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
-        // Set initial state for animated elements
-        document.querySelectorAll('.role-card, .feature-card').forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'all 0.5s ease';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loaded');
+                    // Unobserve after animation to improve performance
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all loading elements
+        document.querySelectorAll('.loading').forEach(element => {
+            observer.observe(element);
         });
 
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
+        // Enhanced notification system with queue support
+        let notificationQueue = [];
+        let isShowingNotification = false;
 
-        // Notification system
         function showNotification(message, duration = 3000) {
+            notificationQueue.push({ message, duration });
+            if (!isShowingNotification) {
+                processNotificationQueue();
+            }
+        }
+
+        function processNotificationQueue() {
+            if (notificationQueue.length === 0) {
+                isShowingNotification = false;
+                return;
+            }
+
+            isShowingNotification = true;
+            const { message, duration } = notificationQueue.shift();
             const notification = document.getElementById('notification');
+            
             notification.textContent = message;
             notification.classList.add('show');
             
             setTimeout(() => {
                 notification.classList.remove('show');
+                setTimeout(() => {
+                    processNotificationQueue();
+                }, 300); // Wait for exit animation
             }, duration);
         }
 
-        // Example notification (can be triggered by user actions)
-        // showNotification("Welcome to DEL Private School System!", 2000);
+        // Enhanced performance monitoring
+        window.addEventListener('load', () => {
+            // Trigger initial animations
+            setTimeout(() => {
+                document.querySelectorAll('.loading').forEach(element => {
+                    if (element.getBoundingClientRect().top < window.innerHeight) {
+                        element.classList.add('loaded');
+                    }
+                });
+            }, 100);
+
+            // Performance metrics
+            if ('performance' in window) {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.log(`Page load time: ${perfData.loadEventEnd - perfData.loadEventStart}ms`);
+            }
+        });
+
+        // Error handling for images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                console.warn('Image failed to load:', this.src);
+            });
+        });
+
+        // Accessibility improvements
+        document.addEventListener('keydown', (e) => {
+            // Close mobile menu with Escape key
+            if (e.key === 'Escape' && menuOpen) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = '';
+                menuOpen = false;
+            }
+        });
+
+        // Initialize tooltips for interactive elements
+        document.querySelectorAll('[title]').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.setAttribute('data-tooltip', this.getAttribute('title'));
+                this.removeAttribute('title');
+            });
+        });
+
+        // Welcome message on first load
+        setTimeout(() => {
+            showNotification('Welcome to DEL Private School Management System! 🎓', 4000);
+        }, 1000);
     </script>
 </body>
 </html>
